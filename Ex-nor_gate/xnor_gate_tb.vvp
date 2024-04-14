@@ -1,0 +1,50 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01264028 .scope module, "xnorGate_tb" "xnorGate_tb" 2 3;
+ .timescale 0 0;
+v01265210_0 .var "a", 0 0;
+v01265268_0 .var "b", 0 0;
+v012652C0_0 .net "c", 0 0, v012651B8_0; 1 drivers
+S_01263360 .scope module, "xnorGate" "Xnorgate" 2 7, 3 1, S_01264028;
+ .timescale 0 0;
+v012633E8_0 .net "a", 0 0, v01265210_0; 1 drivers
+v01263440_0 .net "b", 0 0, v01265268_0; 1 drivers
+v012651B8_0 .var "c", 0 0;
+E_01267B08 .event edge, v01263440_0, v012633E8_0;
+    .scope S_01263360;
+T_0 ;
+    %wait E_01267B08;
+    %load/v 8, v012633E8_0, 1;
+    %load/v 9, v01263440_0, 1;
+    %xor 8, 9, 1;
+    %inv 8, 1;
+    %set/v v012651B8_0, 8, 1;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_01264028;
+T_1 ;
+    %vpi_call 2 10 "$dumpfile", "xnor_gate_tb.vcd";
+    %vpi_call 2 11 "$dumpvars", 1'sb0, S_01264028;
+    %set/v v01265210_0, 0, 1;
+    %set/v v01265268_0, 0, 1;
+    %delay 1, 0;
+    %set/v v01265210_0, 0, 1;
+    %set/v v01265268_0, 1, 1;
+    %delay 1, 0;
+    %set/v v01265210_0, 1, 1;
+    %set/v v01265268_0, 0, 1;
+    %delay 1, 0;
+    %set/v v01265210_0, 1, 1;
+    %set/v v01265268_0, 1, 1;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "xnor_gate_tb.v";
+    "./xnor_gate.v";
