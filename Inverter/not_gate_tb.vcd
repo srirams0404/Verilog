@@ -1,0 +1,30 @@
+$date
+	Sun Apr 14 11:04:20 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module inverter_tb $end
+$var wire 1 ! inv $end
+$var reg 1 " a $end
+$scope module notGate $end
+$var wire 1 # a $end
+$var reg 1 $ inv $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+1$
+0#
+0"
+1!
+$end
+#1
+0$
+0!
+1"
+1#

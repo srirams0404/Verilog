@@ -1,0 +1,38 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01203CE0 .scope module, "inverter_tb" "inverter_tb" 2 3;
+ .timescale 0 0;
+v012052D8_0 .var "a", 0 0;
+v01204B28_0 .net "inv", 0 0, v01203438_0; 1 drivers
+S_01203358 .scope module, "notGate" "inverter" 2 7, 3 1, S_01203CE0;
+ .timescale 0 0;
+v012033E0_0 .net "a", 0 0, v012052D8_0; 1 drivers
+v01203438_0 .var "inv", 0 0;
+E_01041830 .event edge, v012033E0_0;
+    .scope S_01203358;
+T_0 ;
+    %wait E_01041830;
+    %load/v 8, v012033E0_0, 1;
+    %inv 8, 1;
+    %set/v v01203438_0, 8, 1;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_01203CE0;
+T_1 ;
+    %vpi_call 2 10 "$dumpfile", "not_gate_tb.vcd";
+    %vpi_call 2 11 "$dumpvars", 1'sb0, S_01203CE0;
+    %set/v v012052D8_0, 0, 1;
+    %delay 1, 0;
+    %set/v v012052D8_0, 1, 1;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "not_gate_tb.v";
+    "./not_gate.v";
